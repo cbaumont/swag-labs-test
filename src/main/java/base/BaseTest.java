@@ -4,8 +4,8 @@ import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdap
 import driver.DriverFactory;
 import driver.LocalChromeDriver;
 import org.openqa.selenium.WebDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Listeners;
 
 import static utils.PropertyLoader.getPropertyValue;
@@ -21,7 +21,7 @@ public abstract class BaseTest {
         return driver;
     }
 
-    @BeforeMethod
+    @BeforeClass
     public void preCondition() {
         DriverFactory localDriver = new LocalChromeDriver();
         driver = localDriver.getDriver();
@@ -30,7 +30,7 @@ public abstract class BaseTest {
         password = getPropertyValue("password");
     }
 
-    @AfterMethod
+    @AfterClass
     public void postCondition() {
         driver.quit();
     }

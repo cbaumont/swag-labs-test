@@ -4,7 +4,11 @@ import base.BaseTest;
 import org.testng.annotations.Test;
 import pages.*;
 
+import java.util.Arrays;
+import java.util.List;
+
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 import static utils.CustomerData.*;
 
 public class CheckoutDetailsTest extends BaseTest {
@@ -31,6 +35,17 @@ public class CheckoutDetailsTest extends BaseTest {
 
         String actualProductName = checkOutStepTwoPage.getCartItemName();
 
+        float actualTotalPrice = checkOutStepTwoPage.getTotalPrice();
+        float cartItemPrice = checkOutStepTwoPage.getCartItemPrice();
+        float cartItemsQuantity = checkOutStepTwoPage.getCartItemsQuantity();
+        float taxPrice = checkOutStepTwoPage.getTaxPrice();
+
+        List<String> actualSummaryInformation = checkOutStepTwoPage.getSummaryInformation();
+        List<String> expectedSummaryInformation = Arrays.asList("SauceCard #31337", "FREE PONY EXPRESS DELIVERY!");
+
         assertEquals(actualProductName, expectedProductName);
+        assertEquals(actualTotalPrice, cartItemPrice * cartItemsQuantity + taxPrice);
+        assertTrue(actualSummaryInformation.containsAll(expectedSummaryInformation));
+        assertTrue(checkOutStepTwoPage.isFinishButtonPresent());
     }
 }

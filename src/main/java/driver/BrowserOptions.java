@@ -4,7 +4,9 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 import java.util.Arrays;
 
-class BrowserOptions {
+public class BrowserOptions {
+
+    private BrowserOptions(){}
 
     static ChromeOptions getChromeOptions() {
         ChromeOptions chromeOptions = new ChromeOptions();
