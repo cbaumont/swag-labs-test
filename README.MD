@@ -54,7 +54,7 @@ This project uses **config.properties**  file to define the base URL of the appl
 
 `````properties
 # Base URL
-url.base = https://www.grocerycrud.com/v1.x/demo/bootstrap_theme_v5
+url.base = https://www.saucedemo.com
 `````
 
 [Properties model](src/main/resources/config.properties)
