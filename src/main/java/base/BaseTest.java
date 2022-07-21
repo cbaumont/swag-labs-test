@@ -2,10 +2,9 @@ package base;
 
 import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
 import driver.DriverFactory;
-import driver.LocalChromeDriver;
-import driver.LocalFirefoxDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
+import utils.CustomerData;
 
 import static utils.PropertyLoader.getPropertyValue;
 
@@ -13,25 +12,22 @@ import static utils.PropertyLoader.getPropertyValue;
 public abstract class BaseTest {
 
     private static WebDriver driver;
-    protected static String username;
-    protected static String password;
+    protected String username;
+    protected String password;
+    protected CustomerData customerData;
 
-    public static WebDriver getDriver() {
+    public static synchronized WebDriver getDriver() {
         return driver;
     }
 
     @Parameters("browser")
     @BeforeClass
     public void preCondition(@Optional("chrome") String browser) {
-        DriverFactory localDriver;
-        if (browser.equalsIgnoreCase("firefox")) {
-            localDriver = new LocalFirefoxDriver();
-        } else localDriver = new LocalChromeDriver();
-        driver = localDriver.getDriver();
+        driver = new DriverFactory().create(browser).getDriver();
         driver.get(getPropertyValue("url.base"));
-
         username = getPropertyValue("username");
         password = getPropertyValue("password");
+        customerData = new CustomerData();
     }
 
     @AfterClass

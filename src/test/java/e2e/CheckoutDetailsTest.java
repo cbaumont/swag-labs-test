@@ -9,7 +9,6 @@ import java.util.List;
 
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static utils.CustomerData.*;
 
 public class CheckoutDetailsTest extends BaseTest {
 
@@ -28,9 +27,9 @@ public class CheckoutDetailsTest extends BaseTest {
 
         CheckOutStepTwoPage checkOutStepTwoPage = shoppingCartPage
                 .proceedToCheckout()
-                .typeFirstName(getFirstName())
-                .typeLastName(getLastName())
-                .typePostalCode(getPostalCode())
+                .typeFirstName(customerData.getFirstName())
+                .typeLastName(customerData.getLastName())
+                .typePostalCode(customerData.getPostalCode())
                 .continueWithCheckout();
 
         String actualProductName = checkOutStepTwoPage.getCartItemName();

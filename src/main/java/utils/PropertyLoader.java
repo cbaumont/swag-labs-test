@@ -1,15 +1,10 @@
 package utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertyLoader {
-
-    private static final Logger LOGGER = LogManager.getLogger();
 
     private PropertyLoader() {
     }
@@ -22,8 +17,7 @@ public class PropertyLoader {
             properties.load(propFileInpStream);
             return properties.getProperty(property);
         } catch (IOException e) {
-            LOGGER.error("Property not found!", e);
-            throw new NoPropertiesException("No configuration file!");
+            throw new NoPropertiesException("Properties file not found.");
         }
     }
 }
