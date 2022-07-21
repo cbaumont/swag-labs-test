@@ -1,8 +1,13 @@
 package driver;
 
-import org.openqa.selenium.WebDriver;
+public class DriverFactory {
 
-public interface DriverFactory {
-
-    WebDriver getDriver();
+    public LocalDriver create(String driverType) {
+        if (driverType.equalsIgnoreCase("firefox")) {
+            return new FirefoxLocalDriver();
+        } else if (driverType.equalsIgnoreCase("chrome")) {
+            return new ChromeLocalDriver();
+        }
+        return null;
+    }
 }

@@ -5,11 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 
-public class LocalFirefoxDriver implements DriverFactory {
+public class FirefoxLocalDriver implements LocalDriver {
 
     FirefoxOptions firefoxOptions;
 
-    public LocalFirefoxDriver() {
+    public FirefoxLocalDriver() {
         firefoxOptions = BrowserOptions.getFirefoxOptions();
     }
 

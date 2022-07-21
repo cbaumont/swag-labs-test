@@ -2,19 +2,19 @@
 
 This project uses Selenium WebDriver, WebDriverManager and others, with some good development practices, in order to automate E2E front-end tests.
 
-The web application under test can be found at https://www.saucedemo.com
+The web application under test can be found at https://www.saucedemo.com.
 
 1. [Test creation](#test-creation)
-    1. [Example](#example)
 2. [Local execution](#local-execution)
 3. [Properties file](#properties-file)
 3. [Logs and test reports](#logs-and-test-reports)
+4. [Parallel testing](#parallel-testing)
 
 ## Test creation
 
 The test creation is simple and fast, and should follow the patterns below:
- * Test class must be on the path `/src/test/java`
- * Test class must inherit from `BaseTest`
+ * Test classes must be on the path `/src/test/java`
+ * Test classes must inherit from `BaseTest`
  
 ### Example
 
@@ -61,4 +61,9 @@ url.base = https://www.saucedemo.com
 
 ## Logs and test reports
 
-This project uses Log4J 2 for console logging during the test execution, and Extent Reports to automatically generate a test report after the execution.
+This project uses Log4J 2 for console logging during the test execution, and Extent Reports to automatically generate a test report after the execution. The report will be created on the path `target/report/test-execution.html`.
+
+
+## Parallel testing
+
+This project supports the TestNG parallel execution. An example test suite which is running cross-browser tests in parallel can be found at `/src/test/resources/testng.xml`.

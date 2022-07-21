@@ -2,8 +2,6 @@ package base;
 
 import com.aventstack.extentreports.testng.listener.ExtentITestListenerClassAdapter;
 import driver.DriverFactory;
-import driver.LocalChromeDriver;
-import driver.LocalFirefoxDriver;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import utils.CustomerData;
@@ -25,11 +23,7 @@ public abstract class BaseTest {
     @Parameters("browser")
     @BeforeClass
     public void preCondition(@Optional("chrome") String browser) {
-        DriverFactory localDriver;
-        if (browser.equalsIgnoreCase("firefox")) {
-            localDriver = new LocalFirefoxDriver();
-        } else localDriver = new LocalChromeDriver();
-        driver = localDriver.getDriver();
+        driver = new DriverFactory().create(browser).getDriver();
         driver.get(getPropertyValue("url.base"));
         username = getPropertyValue("username");
         password = getPropertyValue("password");
