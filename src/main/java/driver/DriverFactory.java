@@ -2,12 +2,12 @@ package driver;
 
 public class DriverFactory {
 
-    public LocalDriver create(String driverType) {
-        if (driverType.equalsIgnoreCase("firefox")) {
+    public LocalDriver create(String browser) {
+        if (browser.equalsIgnoreCase("firefox")) {
             return new FirefoxLocalDriver();
-        } else if (driverType.equalsIgnoreCase("chrome")) {
+        } else if (browser.equalsIgnoreCase("chrome")) {
             return new ChromeLocalDriver();
         }
-        return null;
+        throw new BrowserNotSupportedException("The browser " + browser + " is not supported.");
     }
 }
