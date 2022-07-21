@@ -4,23 +4,27 @@ import com.github.javafaker.Faker;
 
 public class CustomerData {
 
-    private CustomerData() {
+    private Faker faker;
+    private String firstName;
+    private String lastName;
+    private String postalCode;
+
+    public CustomerData() {
+        faker = new Faker();
+        firstName = faker.name().firstName();
+        lastName = faker.name().lastName();
+        postalCode = faker.numerify("#####");
     }
 
-    private static Faker faker = new Faker();
-    private static String firstName = faker.name().firstName();
-    private static String lastName = faker.name().lastName();
-    private static String postalCode = faker.numerify("#####");
-
-    public static String getFirstName() {
+    public String getFirstName() {
         return firstName;
     }
 
-    public static String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public static String getPostalCode() {
+    public String getPostalCode() {
         return postalCode;
     }
 }
